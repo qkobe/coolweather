@@ -21,7 +21,7 @@ public class CoolWeatherDB {
 
     private CoolWeatherDB(Context context){
         CoolWeatherOpenHelper dbHelper = new CoolWeatherOpenHelper(context, DB_NAME, null, VERSION);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db = dbHelper.getWritableDatabase();
     }
 
     public synchronized static CoolWeatherDB getInstance(Context context){
@@ -40,7 +40,7 @@ public class CoolWeatherDB {
         }
     }
 
-    public List<Province> loadProvince() {
+    public List<Province> loadProvinces() {
         List<Province> list = new ArrayList<>();
         Cursor cursor = db.query("Province", null, null, null, null, null, null);
         if(cursor.moveToFirst()){
@@ -68,7 +68,7 @@ public class CoolWeatherDB {
         }
     }
 
-    public List<City> loadCity(int provinceId){
+    public List<City> loadCities(int provinceId){
         List<City> list = new ArrayList<>();
         Cursor cursor = db.query("City", null, "province_id = ?", new String[] {String.valueOf(provinceId)},
                 null, null, null);
@@ -98,7 +98,7 @@ public class CoolWeatherDB {
         }
     }
 
-    public List<County> loadCounty(int cityId){
+    public List<County> loadCounties(int cityId){
         List<County> list = new ArrayList<>();
         Cursor cursor = db.query("County", null, "city_id = ?", new String[] {String.valueOf(cityId)},
                 null, null, null);
